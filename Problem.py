@@ -3,7 +3,7 @@ import sqlite3
 import time
 
 # Path to the directory containing the weather data files
-data_dir = "/Volumes/Pulkit/code-challenge-template-main/wx_data"
+data_dir = "/wx_data"
 
 # Connect to the database
 conn = sqlite3.connect("weather.db")
