@@ -1,0 +1,9 @@
+CREATE TABLE weather_data (
+    
+    station_id INTEGER NOT NULL,
+    date INTEGER NOT NULL,
+    max_temp REAL NOT NULL,
+    min_temp REAL NOT NULL,
+    precipitation REAL NOT NULL,
+    PRIMARY KEY (station_id, date, max_temp, min_temp, precipitation)
+)

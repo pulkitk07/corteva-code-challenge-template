@@ -1,0 +1,17 @@
+To deploy the Weather Data API on Amazon Web Services, I would use the following tools and services from Amazon:
+
+1.EC2 (Elastic Compute Cloud): I would use it to launch virtual servers to host the API and the database. I would also use EC2 instances to run the scheduled version of the data ingestion code.
+
+2. RDS (Relational Database Service): I would use it to create and manage the SQLite database used by the API. I might migrate to PostgreSQL as well.
+
+3. API Gateway:  I would use it to create and deploy the API endpoints that allow users to interact with the weather data.
+
+4. Lambda: This is a serverless compute service that runs your code in response to events and automatically, that would allow me to run the scheduled version of the data ingestion code.
+
+5.CloudWatch: This is a monitoring service that provides visibility into your cloud resources and applications. I would use it to monitor the API, the database, and the scheduled ingestion code.
+
+With these tools and services, I would be able to create an AWS infrastructure that will include an EC2 instance for hosting the API, an RDS instance for the database, and an EC2 instance for running the scheduled ingestion code. I would eventually use CloudFormation tfor automating the deployment of these resources.
+
+After finalizing on the infrastructure, I would then create the API endpoints using API Gateway, and connect them to the SQLite database. I would also set up CloudWatch alarms that would help me monitor the API, database, and ingestion code, and later I will configure Lambda to run the data ingestion code on a schedule.
+
+With this setup, users to my API would be able to interact with the weather data, and new weather data would be automatically ingested into the database on a regular basis without duplicates.

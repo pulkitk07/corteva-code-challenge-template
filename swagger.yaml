@@ -1,0 +1,138 @@
+openapi: 3.0.0
+
+info:
+  title: Weather data analysis API
+  author: Pulkit Khursija
+  instagram: pulkitkhursija
+  version: 1.0.0
+  description: This API provides access to weather data for a given date or station ID. It Also provides statistical data of weather for given statio ID
+
+servers:
+  - url: http://127.0.0.1:5000/
+
+paths:
+  
+  api:
+    get:
+      summary: Server Port check
+      descreption: Returns "API for weather data" as text 
+      responses:
+        '200':
+          descreption: Successful operation
+          content: "API for weather data"
+        '400':
+          description: Invalid request
+
+
+  api/weather:
+    get:
+      summary: Retrieve weather data
+      description: Returns weather data filtered by date and station ID
+      parameters:
+        - in: query
+          name: date
+          schema:
+            type: integer
+            format: date
+          description: Date of the weather data to retrieve (YYYYMMDD)
+        - in: query
+          name: station_id
+          schema:
+            type: integer
+          description: ID of the weather station
+        - in: query
+          name: page
+          schema:
+            type: integer
+            default: 1
+          description: Page number for pagination
+        - in: query
+          name: 
+          schema:
+            type: 
+            default: 
+          description: Returns all results with default pagenumber applicable
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    date:
+                      type: integer
+                      description: Date of the weather data
+                    station_id:
+                      type: integer
+                      description: ID of the weather station
+                    maximum_temperature:
+                      type: number
+                      format: real
+                      description: Maximum temperature (in degrees Celsius)
+                    minimum_temperature:
+                      type: number
+                      format: real
+                      description: Minimum temperature (in degrees Celsius)
+                    precipitation:
+                      type: number
+                      format: real
+                      description: Precipitation (in centimeters)
+        '400':
+          description: Invalid request
+  
+  
+  api/weather/stats:
+    get:
+      summary: Retrieve weather statistics
+      description: Returns weather statistics filtered by date and station ID
+      parameters:
+        - in: query
+          name: station_id
+          schema:
+            type: integer
+          description: ID of the weather station
+        - in: query
+          name: page
+          schema:
+            type: integer
+            default: 1
+          description: Page number for pagination  
+        - in: query
+          name: 
+          schema:
+            type: 
+            default: 
+          description: Returns all results with default pagenumber applicable  
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    year:
+                      type: integer
+                      description: Year of the weather data
+                    station_id:
+                      type: integer
+                      description: ID of the weather station
+                    average_maximum_temperature:
+                      type: number
+                      format: real
+                      description: Average maximum temperature (in degrees Celsius)
+                    average_minimum_temperature:
+                      type: number
+                      format: real
+                      description: Average minimum temperature (in degrees Celsius)
+                    total_precipitation:
+                      type: number
+                      format: real
+                      description: Total Precipitation (in centimeters)
+        '400':
+          description: Invalid request

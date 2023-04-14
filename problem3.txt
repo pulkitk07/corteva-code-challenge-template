@@ -1,0 +1,17 @@
+CREATE TABLE weather_data_analysis (
+    year INTEGER NOT NULL,
+    station_id INTEGER NOT NULL,
+    avg_max_temp REAL,
+    avg_min_temp REAL,
+    total_precipitation REAL,
+    PRIMARY KEY (year, station_id)
+);
+INSERT INTO weather_data_analysis
+SELECT
+    substr(date, 1, 4) AS year,
+    station_id,
+    AVG(CASE WHEN max_temp != -9999 THEN max_temp/10.0 ELSE NULL END) AS avg_max_temp,
+    AVG(CASE WHEN min_temp != -9999 THEN min_temp/10.0 ELSE NULL END) AS avg_min_temp,
+    SUM(CASE WHEN precipitation != -9999 THEN precipitation/10.0 ELSE NULL END) AS total_precipitation
+FROM weather_data
+GROUP BY year, station_id;
